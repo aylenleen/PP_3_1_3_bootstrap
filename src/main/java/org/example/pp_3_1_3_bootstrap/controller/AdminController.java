@@ -22,7 +22,6 @@ public class AdminController {
 
     private UserService userService;
     private RoleService roleService;
-    private PasswordEncoder passwordEncoder;
 
     @Autowired
     public void setUserService(UserService userService) {
@@ -34,10 +33,6 @@ public class AdminController {
         this.roleService = roleService;
     }
 
-    @Autowired
-    public void setPasswordEncoder(PasswordEncoder passwordEncoder) {
-        this.passwordEncoder = passwordEncoder;
-    }
 
     @GetMapping
     public String showAdminPage(Model model, Principal principal) {

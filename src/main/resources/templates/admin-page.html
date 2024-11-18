@@ -57,7 +57,7 @@
 
 <div class="container-fluid">
     <div class="row">
-        <!-- левая панель -->
+        <!-- Левая панель -->
         <div class="col-md-2 px-0">
             <div class="d-flex flex-column flex-shrink-0 p-0 text-white">
                 <ul class="nav nav-pills flex-column">
@@ -73,7 +73,7 @@
 
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 bg-light">
             <h1 class="mt-3">Admin panel</h1>
-            <!-- вкладки -->
+            <!-- Вкладки -->
             <ul class="nav nav-tabs">
                 <li class="nav-item">
                     <a class="nav-link active" href="#users-table" data-toggle="tab">Users table</a>
@@ -84,7 +84,7 @@
             </ul>
 
             <div class="tab-content mt-4">
-                <!-- таблица -->
+                <!-- Таблица -->
                 <div class="tab-pane fade show active" id="users-table">
                     <div class="header-section mb-1" style="color: black; background-color: #e9ecef; border-bottom: 2px solid #dee2e6; padding: 0.5rem 1rem;">
                         <h3>All users</h3>
@@ -148,7 +148,7 @@
                     </table>
                 </div>
 
-                <!--вкладка добавления-->
+                <!--Вкладка добавления пользователя-->
                 <div class="tab-pane fade" id="new-user">
                     <div class="header-section mb-3" style="color: black; background-color: #e9ecef;
                     border-bottom: 2px solid #dee2e6; padding: 0.5rem 1rem; text-align: center;">
@@ -190,7 +190,7 @@
     </div>
 </div>
 
-<!--окно ред-->
+<!--Окно редактирования-->
 <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -247,7 +247,7 @@
 
 
 
-<!--удаление-->
+<!--Окно удаления-->
 <div class="modal fade" id="deleteUserModal" tabindex="-1" aria-labelledby="deleteUserModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -305,7 +305,6 @@
             const email = button.getAttribute('data-email');
             const username = button.getAttribute('data-username');
             const password = button.getAttribute('data-password');
-            const roles = button.getAttribute('data-roles').split(',');
 
             const modalIdInput = editUserModal.querySelector('#editUserId');
             const modalFirstnameInput = editUserModal.querySelector('#editFirstName');
@@ -313,7 +312,6 @@
             const modalEmailInput = editUserModal.querySelector('#editEmail');
             const modalUsernameInput = editUserModal.querySelector('#editUsername');
             const modalPasswordInput = editUserModal.querySelector('#editPassword');
-            const modalRolesSelect = editUserModal.querySelector('#editRoles');
 
             modalIdInput.value = userId;
             modalFirstnameInput.value = firstname;
@@ -321,12 +319,6 @@
             modalEmailInput.value = email;
             modalUsernameInput.value = username;
             modalPasswordInput.value = password;
-
-            // $("#editRoles option:text=" + roles +"").prop("selected", "selected");
-
-            // Array.from(modalRolesSelect.options).forEach(option => {
-            //     option.selected = roles.includes(option.value);
-            // });
         });
     });
 </script>
@@ -341,7 +333,6 @@
             const email = button.getAttribute('data-email');
             const username = button.getAttribute('data-username');
             const password = button.getAttribute('data-password');
-            const roles = button.getAttribute('data-roles').split(',');
 
             const modalIdInput = deleteUserModal.querySelector('#deleteUserId');
             const modalFirstnameInput = deleteUserModal.querySelector('#deleteFirstname');
@@ -349,7 +340,6 @@
             const modalEmailInput = deleteUserModal.querySelector('#deleteEmail');
             const modalUsernameInput = deleteUserModal.querySelector('#deleteUsername');
             const modalPasswordInput = editUserModal.querySelector('#editPassword');
-            const modalRolesSelect = deleteUserModal.querySelector('#deleteRoles');
 
             modalIdInput.value = userId;
             modalFirstnameInput.value = firstname;
@@ -358,17 +348,6 @@
             modalUsernameInput.value = username;
             modalPasswordInput.value = password;
 
-            // Array.from(modalRolesSelect.options).forEach(option => {
-            //     option.selected = false;
-            // });
-            //
-            // roles.forEach(roleId => {
-            //     Array.from(modalRolesSelect.options).forEach(option => {
-            //         if (option.value === roleId) {
-            //             option.selected = true;
-            //         }
-            //     });
-            // });
         });
     });
 </script>
