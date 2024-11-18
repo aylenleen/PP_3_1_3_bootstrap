@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link th:href="@{/adminstyle.css}" rel="stylesheet" />
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
@@ -120,22 +119,13 @@
                                    class="btn btn-primary"
                                         data-toggle="modal"
                                         data-target="#editUserModal"
-
-                                   th:attr="data-id=${user.id},
+                                        th:attr="data-id=${user.id},
                                             data-firstName=${user.firstName},
                                             data-lastName=${user.lastName},
                                             data-email=${user.email},
                                             data-username=${user.username},
+                                            data-password=${user.password},
                                             data-roles=${user.roles}">
-<!--                                   th:data-firstName="${user.firstName}"-->
-<!--                                   th:data-id="${user.id}"-->
-<!--                                   th:data-lastName="${user.lastName}"-->
-<!--                                   th:data-email="${user.email}"-->
-<!--                                   th:data-username="${user.username}"-->
-<!--                                   th:data-password="${user.password}">
-th:data-target="${'#editUserModal'+user.getId()}"-->
-
-
                                     Edit
                                 </button>
                             </td>
@@ -148,8 +138,8 @@ th:data-target="${'#editUserModal'+user.getId()}"-->
                                             data-lastName=${user.lastName},
                                             data-email=${user.email},
                                             data-username=${user.username},
+                                            data-password=${user.password},
                                             data-roles=${user.roles}">
-<!--                                    th:data-target="${'#deleteUserModal'+user.getId()}"-->
                                     Delete
                                 </button>
                             </td>
@@ -168,15 +158,15 @@ th:data-target="${'#editUserModal'+user.getId()}"-->
                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                         <div class="mb-3">
                             <label for="firstName" class="form-label" style="font-weight: bold;">First name</label>
-                            <input type="text" class="form-control w-25 mx-auto" id="firstname" name="firstname" required>
+                            <input type="text" class="form-control w-25 mx-auto" id="firstName" name="firstName" required>
                         </div>
                         <div class="mb-3">
                             <label for="lastName" class="form-label" style="font-weight: bold;">Last name</label>
-                            <input type="text" class="form-control w-25 mx-auto" id="lastname" name="lastname" required>
+                            <input type="text" class="form-control w-25 mx-auto" id="lastName" name="lastName" required>
                         </div>
                         <div class="mb-3">
                             <label for="email" class="form-label" style="font-weight: bold;">Email</label>
-                            <input type="number" class="form-control w-25 mx-auto" id="email" name="email" required>
+                            <input type="text" class="form-control w-25 mx-auto" id="email" name="email" required>
                         </div>
                         <div class="mb-3">
                             <label for="username" class="form-label" style="font-weight: bold;">Username</label>
@@ -201,7 +191,6 @@ th:data-target="${'#editUserModal'+user.getId()}"-->
 </div>
 
 <!--окно ред-->
-<!--th:id="${'#editUserModal'+user.getId()}"-->
 <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -212,7 +201,7 @@ th:data-target="${'#editUserModal'+user.getId()}"-->
             </div>
 
             <div class="modal-body">
-                <form id="editUserForm" th:action="@{/updateUser}" method="post">
+                <form id="editUserForm" th:action="@{/admin/updateUser}" method="post">
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 <div class="mb-3">
                         <label for="editUserId" class="form-label fw-bold">ID</label>
@@ -221,19 +210,19 @@ th:data-target="${'#editUserModal'+user.getId()}"-->
 
                     <div class="mb-3">
                         <label for="editFirstName" class="form-label fw-bold">First Name</label>
-                        <input type="text" class="form-control" id="editFirstName" name="firstName">
+                        <input type="text" class="form-control" id="editFirstName" name="firstName" value="">
                     </div>
                     <div class="mb-3">
-                        <label for="editLastname" class="form-label fw-bold">Last Name</label>
-                        <input type="text" class="form-control" id="editLastName" name="lastName">
+                        <label for="editLastName" class="form-label fw-bold">Last Name</label>
+                        <input type="text" class="form-control" id="editLastName" name="lastName" value="">
                     </div>
                     <div class="mb-3">
-                        <label for="editEmail" class="form-label fw-bold">Age</label>
-                        <input type="number" class="form-control" id="editEmail" name="email">
+                        <label for="editEmail" class="form-label fw-bold">Email</label>
+                        <input type="text" class="form-control" id="editEmail" name="email" value="">
                     </div>
                     <div class="mb-3">
                         <label for="editUsername" class="form-label fw-bold">Email</label>
-                        <input type="text" class="form-control" id="editUsername" name="username">
+                        <input type="text" class="form-control" id="editUsername" name="username" value="">
                     </div>
                     <div class="mb-3">
                         <label for="editPassword" class="form-label fw-bold">Password</label>
@@ -256,52 +245,6 @@ th:data-target="${'#editUserModal'+user.getId()}"-->
 </div>
 
 
-<!--<div class="modal fade" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="editUserModalLabel" aria-hidden="true">-->
-<!--    <div class="modal-dialog" role="document">-->
-<!--        <div class="modal-content">-->
-<!--            <div class="modal-header">-->
-<!--                <h5 class="modal-title" id="editUserModalLabel">Редактировать пользователя</h5>-->
-<!--                <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
-<!--                    <span aria-hidden="true">&times;</span>-->
-<!--                </button>-->
-<!--            </div>-->
-<!--            <div class="modal-body">-->
-<!--                <form th:action="@{/admin/updateUser}" method="post">-->
-<!--                    <div class="form-group">-->
-<!--                        <label for="editUsername">USERNAME:</label>-->
-<!--                        <input type="text" class="form-control" id="editUsername" name="username" readonly required />-->
-<!--                    </div>-->
-<!--                    <div class="form-group">-->
-<!--                        <label for="editFirstName">FirstName:</label>-->
-<!--                        <input type="text" class="form-control" id="editFirstName" name="firstName" th:value="${user.firstName}" required />-->
-<!--                    </div>-->
-<!--                    <div class="form-group">-->
-<!--                        <label for="editLastName">LastName:</label>-->
-<!--                        <input type="text" class="form-control" id="editLastName" name="lastName" required />-->
-<!--                    </div>-->
-<!--                    <div class="form-group">-->
-<!--                        <label for="editPassword">PASSWORD:</label>-->
-<!--                        <input type="password" class="form-control" id="editPassword" name="password" />-->
-<!--                    </div>-->
-<!--                    <div class="form-group">-->
-<!--                        <label>Роли:</label>-->
-<!--                        <div>-->
-<!--                            <p th:each="role : ${allRoles}">-->
-<!--                                <label>-->
-<!--                                    <input type="checkbox" name="roles" th:value="${role.id}"/>-->
-<!--                                    <span th:text="${role.name}"></span>-->
-<!--                                </label>-->
-<!--                            </p>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="form-group">-->
-<!--                        <input type="submit" value="Сохранить!" class="btn btn-primary" />-->
-<!--                    </div>-->
-<!--                </form>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
 
 
 <!--удаление-->
@@ -313,7 +256,7 @@ th:data-target="${'#editUserModal'+user.getId()}"-->
                 <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="deleteUserForm" th:action="@{/deleteUser}" method="post">
+                <form id="deleteUserForm" th:action="@{/admin/deleteUser}">
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     <div class="mb-3">
                         <label for="deleteUserId" class="form-label fw-bold">ID</label>
@@ -321,15 +264,15 @@ th:data-target="${'#editUserModal'+user.getId()}"-->
                     </div>
                     <div class="mb-3">
                         <label for="deleteFirstname" class="form-label fw-bold">First Name</label>
-                        <input type="text" class="form-control bg-light" id="deleteFirstname" name="firstname" readonly>
+                        <input type="text" class="form-control bg-light" id="deleteFirstname" name="firstName" readonly>
                     </div>
                     <div class="mb-3">
                         <label for="deleteLastname" class="form-label fw-bold">Last Name</label>
-                        <input type="text" class="form-control bg-light" id="deleteLastname" name="lastname" readonly>
+                        <input type="text" class="form-control bg-light" id="deleteLastname" name="lastName" readonly>
                     </div>
                     <div class="mb-3">
-                        <label for="deleteAge" class="form-label fw-bold">Age</label>
-                        <input type="number" class="form-control bg-light" id="deleteAge" name="age" readonly>
+                        <label for="deleteEmail" class="form-label fw-bold">Email</label>
+                        <input type="text" class="form-control bg-light" id="deleteEmail" name="email" readonly>
                     </div>
                     <div class="mb-3">
                         <label for="deleteUsername" class="form-label fw-bold">Username</label>
@@ -352,36 +295,82 @@ th:data-target="${'#editUserModal'+user.getId()}"-->
 </div>
 
 
-<!--<script>-->
-<!--    $(function() {-->
-<!--        $(".btn").click(function () {-->
-<!--            let id = $(this).attr('data-id');-->
-<!--            let username = $(this).attr('data-username');-->
-<!--            let password = $(this).attr('data-password');-->
-<!--            let firstName = $(this).attr('data-firstName');-->
-<!--            let lastName = $(this).attr('data-lastName');-->
-<!--            let email = $(this).attr('data-email');-->
-<!--        });-->
-<!--    });-->
-<!--</script>-->
+<script>
+    $(document).ready(function() {
+        $('#editUserModal').on('show.bs.modal', function(e) {
+            const button = e.relatedTarget;
+            const userId = button.getAttribute('data-id');
+            const firstname = button.getAttribute('data-firstName');
+            const lastname = button.getAttribute('data-lastName');
+            const email = button.getAttribute('data-email');
+            const username = button.getAttribute('data-username');
+            const password = button.getAttribute('data-password');
+            const roles = button.getAttribute('data-roles').split(',');
 
+            const modalIdInput = editUserModal.querySelector('#editUserId');
+            const modalFirstnameInput = editUserModal.querySelector('#editFirstName');
+            const modalLastnameInput = editUserModal.querySelector('#editLastName');
+            const modalEmailInput = editUserModal.querySelector('#editEmail');
+            const modalUsernameInput = editUserModal.querySelector('#editUsername');
+            const modalPasswordInput = editUserModal.querySelector('#editPassword');
+            const modalRolesSelect = editUserModal.querySelector('#editRoles');
 
+            modalIdInput.value = userId;
+            modalFirstnameInput.value = firstname;
+            modalLastnameInput.value = lastname;
+            modalEmailInput.value = email;
+            modalUsernameInput.value = username;
+            modalPasswordInput.value = password;
 
+            // $("#editRoles option:text=" + roles +"").prop("selected", "selected");
 
+            // Array.from(modalRolesSelect.options).forEach(option => {
+            //     option.selected = roles.includes(option.value);
+            // });
+        });
+    });
+</script>
 
+<script>
+    $(document).ready(function() {
+        $('#deleteUserModal').on('show.bs.modal', function(e) {
+            const button = e.relatedTarget;
+            const userId = button.getAttribute('data-id');
+            const firstname = button.getAttribute('data-firstname');
+            const lastname = button.getAttribute('data-lastname');
+            const email = button.getAttribute('data-email');
+            const username = button.getAttribute('data-username');
+            const password = button.getAttribute('data-password');
+            const roles = button.getAttribute('data-roles').split(',');
 
+            const modalIdInput = deleteUserModal.querySelector('#deleteUserId');
+            const modalFirstnameInput = deleteUserModal.querySelector('#deleteFirstname');
+            const modalLastnameInput = deleteUserModal.querySelector('#deleteLastname');
+            const modalEmailInput = deleteUserModal.querySelector('#deleteEmail');
+            const modalUsernameInput = deleteUserModal.querySelector('#deleteUsername');
+            const modalPasswordInput = editUserModal.querySelector('#editPassword');
+            const modalRolesSelect = deleteUserModal.querySelector('#deleteRoles');
 
+            modalIdInput.value = userId;
+            modalFirstnameInput.value = firstname;
+            modalLastnameInput.value = lastname;
+            modalEmailInput.value = email;
+            modalUsernameInput.value = username;
+            modalPasswordInput.value = password;
 
-
-<!--<a th:href="@{/admin/all-users}"><input type="button" class="btn btn-success" value="База пользователей" /></a>-->
-
-<!--<br><br>-->
-<!--<a th:href="@{/user}"><input type="submit" value="В личный кабинет" /></a>-->
-
-<!--<br><br>-->
-<!--<form th:action="@{/logout}" method="post">-->
-<!--    <input type="submit" value="Выйти" />-->
-<!--</form>-->
-
+            // Array.from(modalRolesSelect.options).forEach(option => {
+            //     option.selected = false;
+            // });
+            //
+            // roles.forEach(roleId => {
+            //     Array.from(modalRolesSelect.options).forEach(option => {
+            //         if (option.value === roleId) {
+            //             option.selected = true;
+            //         }
+            //     });
+            // });
+        });
+    });
+</script>
 </body>
 </html>

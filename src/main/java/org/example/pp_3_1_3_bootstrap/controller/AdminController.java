@@ -52,20 +52,6 @@ public class AdminController {
         return "admin-page";
     }
 
-//    @GetMapping(value ="/all-users")
-//    public String showAllUsers(Model model) {
-//        model.addAttribute("users", userService.getAllUsers());
-//        return "all-users";
-//    }
-
-//    @GetMapping(value ="/addUser")
-//    public String addUser(Model model) {
-//        User user = new User();
-//        model.addAttribute("user", user);
-//        model.addAttribute("roles", roleService.getRoles());
-//        return "redirect:/admin";
-//    }
-
     @PostMapping(value = "/saveUser")
     public String saveUser(@ModelAttribute("newUser") User user) {
         userService.add(user);
@@ -73,26 +59,16 @@ public class AdminController {
     }
 
     @PostMapping(value = "/updateUser")
-    public String updateUser(@ModelAttribute("user") User user, @RequestParam("id") int id) {
+    public String updateUser(@RequestParam("id") int id, @ModelAttribute User user) {
+        user.setId((long)id);
         userService.update(user);
         return "redirect:/admin";
     }
 
-    @GetMapping(value ="/updateInfo")
-    public String updateUser(@RequestParam("id") int id, Model model) {
-        User user = userService.getUserById(id);
-        model.addAttribute("user", user);
-        model.addAttribute("userId", user.getId());
-        model.addAttribute("roles1", roleService.getRoles());
-        return "admin-page";
-    }
-
     @GetMapping(value ="/deleteUser")
-    public String deleteUser(@RequestParam("userId") int id, Model model) {
-        User user = userService.getUserById(id);
-        model.addAttribute("user", user);
-        model.addAttribute("userRoles", roleService.getRolesNames(user));
+    public String deleteUser(@RequestParam("id") int id, @ModelAttribute User user) {
+        user.setId((long)id);
         userService.delete(user);
-        return "redirect:/admin/all-users";
+        return "redirect:/admin";
     }
 }
